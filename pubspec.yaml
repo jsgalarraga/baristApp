@@ -1,0 +1,32 @@
+name: coffee_app
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+  flutter: 3.3.8
+
+dependencies:
+  bloc: ^8.1.0
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.1
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  json_annotation: ^4.7.0
+
+dev_dependencies:
+  bloc_test: ^9.1.0
+  build_runner: ^2.3.0
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.5.4
+  mocktail: ^0.3.0
+  very_good_analysis: ^3.1.0
+
+flutter:
+  uses-material-design: true
+  generate: true
