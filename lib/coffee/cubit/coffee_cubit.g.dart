@@ -6,18 +6,30 @@ part of 'coffee_cubit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CoffeeState _$CoffeeStateFromJson(Map<String, dynamic> json) => CoffeeState(
-      status: $enumDecodeNullable(_$CoffeeStatusEnumMap, json['status']) ??
-          CoffeeStatus.initial,
-      coffee: json['coffee'] == null
-          ? null
-          : Coffee.fromJson(json['coffee'] as Map<String, dynamic>),
+CoffeeState _$CoffeeStateFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'CoffeeState',
+      json,
+      ($checkedConvert) {
+        final val = CoffeeState(
+          status: $checkedConvert(
+              'status',
+              (v) =>
+                  $enumDecodeNullable(_$CoffeeStatusEnumMap, v) ??
+                  CoffeeStatus.initial),
+          coffee: $checkedConvert(
+              'coffee',
+              (v) => v == null
+                  ? null
+                  : Coffee.fromJson(v as Map<String, dynamic>)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$CoffeeStateToJson(CoffeeState instance) =>
     <String, dynamic>{
       'status': _$CoffeeStatusEnumMap[instance.status]!,
-      'coffee': instance.coffee,
+      'coffee': instance.coffee.toJson(),
     };
 
 const _$CoffeeStatusEnumMap = {
