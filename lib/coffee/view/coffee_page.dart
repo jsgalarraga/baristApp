@@ -27,7 +27,7 @@ class _CoffeeViewState extends State<CoffeeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Coffee'),
+        title: const Text('Coffee bartender'),
       ),
       body: Center(
         child: BlocBuilder<CoffeeCubit, CoffeeState>(
@@ -49,17 +49,14 @@ class _CoffeeViewState extends State<CoffeeView> {
                   },
                 );
               case CoffeeStatus.failure:
-                return const CoffeeError();
+                return CoffeeError(
+                  onRefresh: () {
+                    return context.read<CoffeeCubit>().fetchCoffee();
+                  },
+                );
             }
           },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.search, semanticLabel: 'Search'),
-        onPressed: () async {
-          if (!mounted) return;
-          await context.read<CoffeeCubit>().fetchCoffee();
-        },
       ),
     );
   }

@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coffee_app/coffee/coffee.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class CoffeePopulated extends StatelessWidget {
   const CoffeePopulated({
@@ -13,25 +15,33 @@ class CoffeePopulated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return RefreshIndicator(
-      onRefresh: onRefresh,
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        clipBehavior: Clip.none,
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 48),
-              Text(
-                'coffee image placeholder',
-                style: theme.textTheme.headline2?.copyWith(
-                  fontWeight: FontWeight.w200,
-                ),
-              ),
-            ],
+    return SafeArea(
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(32),
+            child: Center(
+              child: CachedNetworkImage(imageUrl: coffee.imageUrl),
+            ),
           ),
-        ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                  onPressed: onRefresh,
+                  child: const Icon(Icons.refresh),
+                ),
+                const Gap(32),
+                ElevatedButton(
+                  onPressed: onRefresh,
+                  child: const Icon(Icons.download),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
