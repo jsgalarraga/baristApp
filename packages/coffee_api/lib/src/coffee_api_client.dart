@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:coffee_api/coffee_api.dart';
 import 'package:http/http.dart' as http;
 
-/// Exception thrown when getWeather fails.
+/// Exception thrown when getRandomCoffee fails.
 class CoffeeRequestFailure implements Exception {}
 
 /// Dart API Client which wraps the [Coffee API](https://coffee.alexflipnote.dev/).
