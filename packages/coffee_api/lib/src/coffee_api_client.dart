@@ -9,7 +9,8 @@ class CoffeeRequestFailure implements Exception {}
 
 /// Dart API Client which wraps the [Coffee API](https://coffee.alexflipnote.dev/).
 class CoffeeApiClient {
-  CoffeeApiClient({http.Client? httpClient}) : _httpClient = httpClient ?? http.Client();
+  CoffeeApiClient({http.Client? httpClient})
+      : _httpClient = httpClient ?? http.Client();
 
   static const _baseUrlCoffee = 'coffee.alexflipnote.dev';
 

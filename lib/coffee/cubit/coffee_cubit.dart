@@ -31,9 +31,7 @@ class CoffeeCubit extends Cubit<CoffeeState> {
     }
   }
 
-  @override
   CoffeeState fromJson(Map<String, dynamic> json) => CoffeeState.fromJson(json);
 
-  @override
   Map<String, dynamic> toJson(CoffeeState state) => state.toJson();
 }
