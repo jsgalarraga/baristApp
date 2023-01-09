@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:coffee_api/coffee_api.dart';
+import 'package:http/http.dart' as http;
 
 /// Exception thrown when getWeather fails.
 class CoffeeRequestFailure implements Exception {}

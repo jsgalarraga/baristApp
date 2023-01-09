@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:coffee_api/coffee_api.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('Coffee', () {
