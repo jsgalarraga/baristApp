@@ -1,6 +1,5 @@
-# Coffee App
+# BaristApp
 
-![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
@@ -18,6 +17,8 @@ This project contains 3 flavors:
 - staging
 - production
 
+_However, for the purpose of this assignment, all of them are equivalent to the production flavor_
+
 To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
 
 ```sh
@@ -31,7 +32,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Coffee App works on iOS, Android, Web, and Windows._
+_\*BaristApp works on iOS and Android._
 
 ---
 
@@ -154,7 +155,6 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
-[coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
