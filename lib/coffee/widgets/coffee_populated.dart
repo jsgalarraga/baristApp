@@ -52,7 +52,7 @@ class CoffeePopulated extends StatelessWidget {
                 const Gap(32),
                 ElevatedButton(
                   onPressed: onRefresh,
-                  child: const Icon(Icons.refresh),
+                  child: const Icon(Icons.autorenew),
                 ),
               ],
             ),
