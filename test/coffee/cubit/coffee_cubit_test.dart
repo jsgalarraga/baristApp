@@ -89,5 +89,17 @@ void main() {
         ],
       );
     });
+
+    group('reset', () {
+      blocTest<CoffeeCubit, CoffeeState>(
+        'emits [initial]',
+        build: () => coffeeCubit,
+        act: (cubit) => cubit.reset(),
+        expect: () => <CoffeeState>[
+          // ignore: avoid_redundant_argument_values
+          CoffeeState(status: CoffeeStatus.initial),
+        ],
+      );
+    });
   });
 }
