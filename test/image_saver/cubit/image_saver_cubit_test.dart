@@ -77,7 +77,8 @@ void main() {
       );
 
       blocTest<ImageSaverCubit, ImageSaverState>(
-        'emits [loading, missingPermissions] when photos permission not granted',
+        'emits [loading, missingPermissions] when photos permission '
+        'not granted',
         setUp: () {
           when(
             () => imageSaver.saveImageFromUrl(any()),
