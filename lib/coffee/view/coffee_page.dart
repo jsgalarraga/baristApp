@@ -1,6 +1,7 @@
 import 'package:coffee_app/coffee/coffee.dart';
 import 'package:coffee_repository/coffee_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CoffeePage extends StatelessWidget {
@@ -25,10 +26,14 @@ class CoffeeView extends StatefulWidget {
 class _CoffeeViewState extends State<CoffeeView> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Coffee bartender'),
+        backgroundColor: theme.backgroundColor,
+        elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
+      backgroundColor: theme.backgroundColor,
       body: Center(
         child: BlocBuilder<CoffeeCubit, CoffeeState>(
           builder: (context, state) {
