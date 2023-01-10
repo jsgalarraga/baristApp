@@ -42,11 +42,14 @@ void main() {
 
     group('saveImageFromUrl', () {
       blocTest<ImageSaverCubit, ImageSaverState>(
-        'calls saveImageFromUrl correctly',
+        'calls saveImageFromUrl correctly when has permissions',
         setUp: () {
           when(
             () => imageSaver.saveImageFromUrl(any()),
           ).thenAnswer((_) async => true);
+          when(
+            () => imageSaver.isPhotosPermissionPermanentlyDenied(),
+          ).thenAnswer((_) async => false);
         },
         build: () => imageSaverCubit,
         act: (cubit) => cubit.saveImageFromUrl(imageUrl),
@@ -61,6 +64,9 @@ void main() {
           when(
             () => imageSaver.saveImageFromUrl(any()),
           ).thenThrow(Exception());
+          when(
+            () => imageSaver.isPhotosPermissionPermanentlyDenied(),
+          ).thenAnswer((_) async => false);
         },
         build: () => imageSaverCubit,
         act: (cubit) => cubit.saveImageFromUrl(imageUrl),
@@ -71,17 +77,20 @@ void main() {
       );
 
       blocTest<ImageSaverCubit, ImageSaverState>(
-        'emits [loading, failure] when saveImageFromUrl returns null',
+        'emits [loading, missingPermissions] when photos permission not granted',
         setUp: () {
           when(
             () => imageSaver.saveImageFromUrl(any()),
           ).thenAnswer((_) async => null);
+          when(
+            () => imageSaver.isPhotosPermissionPermanentlyDenied(),
+          ).thenAnswer((_) async => true);
         },
         build: () => imageSaverCubit,
         act: (cubit) => cubit.saveImageFromUrl(imageUrl),
         expect: () => <ImageSaverState>[
           ImageSaverState(status: ImageSaverStatus.loading),
-          ImageSaverState(status: ImageSaverStatus.failure),
+          ImageSaverState(status: ImageSaverStatus.missingPermissions),
         ],
       );
       blocTest<ImageSaverCubit, ImageSaverState>(
@@ -89,6 +98,9 @@ void main() {
         setUp: () {
           when(
             () => imageSaver.saveImageFromUrl(any()),
+          ).thenAnswer((_) async => false);
+          when(
+            () => imageSaver.isPhotosPermissionPermanentlyDenied(),
           ).thenAnswer((_) async => false);
         },
         build: () => imageSaverCubit,
@@ -105,6 +117,9 @@ void main() {
           when(
             () => imageSaver.saveImageFromUrl(any()),
           ).thenAnswer((_) async => true);
+          when(
+            () => imageSaver.isPhotosPermissionPermanentlyDenied(),
+          ).thenAnswer((_) async => false);
         },
         build: () => imageSaverCubit,
         act: (cubit) => cubit.saveImageFromUrl(imageUrl),

@@ -15,12 +15,16 @@ class ImageSaverCubit extends Cubit<ImageSaverState> {
     emit(state.copyWith(status: ImageSaverStatus.loading));
 
     try {
+      if (await _imageSaver.isPhotosPermissionPermanentlyDenied()) {
+        emit(state.copyWith(status: ImageSaverStatus.missingPermissions));
+        return;
+      }
       final success = await _imageSaver.saveImageFromUrl(imageUrl);
       if (success ?? false) {
         emit(state.copyWith(status: ImageSaverStatus.success));
-      } else {
-        emit(state.copyWith(status: ImageSaverStatus.failure));
+        return;
       }
+      emit(state.copyWith(status: ImageSaverStatus.failure));
     } on Exception {
       emit(state.copyWith(status: ImageSaverStatus.failure));
     }

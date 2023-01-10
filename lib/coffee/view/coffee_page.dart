@@ -78,6 +78,7 @@ class _CoffeeViewState extends State<CoffeeView> {
           } else if (state.status.isLoading) {
             Toast.showCenteredToast(
               context,
+              duration: const Duration(seconds: 1),
               message: 'Saving image...',
             );
           } else if (state.status.isSuccess) {
