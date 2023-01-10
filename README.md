@@ -155,6 +155,11 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
+## Assets
+
+Main page asset: barista and coffee by monkik from [Noun Project][barista_asset_link]
+
+[barista_asset_link]: https://thenounproject.com/browse/icons/term/barista-and-coffee/
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
