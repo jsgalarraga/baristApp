@@ -1,7 +1,15 @@
 {
     "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+    "appTitle": "BaristApp",
+    "emptyCoffeeHeader": "Bienvenido a",
+    "getCoffeeButton": "Quiero un café!",
+    "errorCoffeeTitle": "Algo ha ido mal!",
+    "tryAgain": "Reintentar",
+    "populatedCoffeeTitle": "Aquí tienes, ¡disfrútalo!",
+    "missingPermissionsToast": "No tenemos los permisos necesarios para guardar la imagen. Por favor, ve a los ajustes de privacidad y permite el acceso de la aplicación",
+    "internalStorage": "al almacenamiento interno",
+    "photos": "a las fotos",
+    "errorSavingImageToast": "Ha ocurrido un error inesperado.",
+    "savingImageToast": "Guardando imagen...",
+    "imageSavedToast": "¡Imagen guardada!"
 }

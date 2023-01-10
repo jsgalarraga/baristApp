@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:coffee_app/coffee/coffee.dart';
 import 'package:coffee_app/image_saver/image_saver.dart';
+import 'package:coffee_app/l10n/l10n.dart';
 import 'package:coffee_repository/coffee_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +40,7 @@ class _CoffeeViewState extends State<CoffeeView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.backgroundColor,
@@ -62,29 +64,27 @@ class _CoffeeViewState extends State<CoffeeView> {
         listener: (context, state) {
           if (state.status.isMissingPermissions) {
             final permissionRequired =
-                Platform.isAndroid ? 'internal storage' : 'photos';
+                Platform.isAndroid ? l10n.internalStorage : l10n.photos;
             Toast.showCenteredToast(
               context,
               duration: const Duration(seconds: 6),
-              message: "We don't have required permissions to save the image. "
-                  'Please go to privacy settings and allow the app to access '
-                  '$permissionRequired.',
+              message: '${l10n.missingPermissionsToast} $permissionRequired.',
             );
           } else if (state.status.isFailure) {
             Toast.showCenteredToast(
               context,
-              message: 'An unexpected error occurred.',
+              message: l10n.errorSavingImageToast,
             );
           } else if (state.status.isLoading) {
             Toast.showCenteredToast(
               context,
               duration: const Duration(seconds: 1),
-              message: 'Saving image...',
+              message: l10n.savingImageToast,
             );
           } else if (state.status.isSuccess) {
             Toast.showCenteredToast(
               context,
-              message: 'Image saved!',
+              message: l10n.imageSavedToast,
             );
           }
         },

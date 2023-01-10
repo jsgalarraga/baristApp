@@ -1,7 +1,45 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
+    "appTitle": "BaristApp",
+    "@appTitle": {
+        "description": "App title shown in the coffee page empty state"
+    },
+    "emptyCoffeeHeader": "Welcome to",
+    "@emptyCoffeeHeader": {
+        "description": "Header shown in the coffee page empty state"
+    },
+    "getCoffeeButton": "Get a coffee!",
+    "@getCoffeeButton": {
+        "description": "CTA shown in the main button of the coffee page empty state"
+    },
+    "errorCoffeeTitle": "Something went wrong!",
+    "@errorCoffeeTitle": {
+        "description": "Text shown in the coffee page error state"
+    },
+    "tryAgain": "Try again",
+    "@tryAgain": {
+        "description": "Text shown in the coffee page error state"
+    },
+    "populatedCoffeeTitle": "Here is your order, enjoy!",
+    "@populatedCoffeeTitle": {
+        "description": "Title shown in the coffee page success state"
+    },
+    "missingPermissionsToast": "We don't have required permissions to save the image. Please go to privacy settings and allow the app to access",
+    "@missingPermissionsToast": {
+        "description": "Message shown in the toast when required permissions are not granted. Incomplete, fill with permission"
+    },
+    "internalStorage": "internal storage",
+    "photos": "photos",
+    "errorSavingImageToast": "An unexpected error occurred.",
+    "@errorSavingImageToast": {
+        "description": "Message shown when an error occurs when saving an image"
+    },
+    "savingImageToast": "Saving image...",
+    "@savingImageToast": {
+        "description": "Message shown when an image is being saved"
+    },
+    "imageSavedToast": "Image saved!",
+    "@imageSavedToast": {
+        "description": "Message shown when an image is saved successfully"
     }
 }
