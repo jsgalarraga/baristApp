@@ -38,12 +38,26 @@ void main() {
     });
 
     group('toJson/fromJson', () {
-      test('work correctly', () {
+      test('works correctly', () {
         final coffeeCubit = CoffeeCubit(coffeeRepository);
         expect(
           coffeeCubit.fromJson(coffeeCubit.toJson(coffeeCubit.state)),
           coffeeCubit.state,
         );
+      });
+    });
+
+    group('copyWith', () {
+      test('works correctly without params', () {
+        final coffeeCubit = CoffeeCubit(coffeeRepository);
+        expect(
+          coffeeCubit.state.copyWith(),
+          coffeeCubit.state,
+        );
+      });
+      test('works correctly without params', () {
+        final coffee = Coffee(imageUrl: coffeeImageUrl);
+        expect(coffee.copyWith(), coffee);
       });
     });
 

@@ -29,12 +29,22 @@ void main() {
     });
 
     group('toJson/fromJson', () {
-      test('work correctly', () {
+      test('works correctly', () {
         final imageSaverCubit = ImageSaverCubit(imageSaver);
         expect(
           imageSaverCubit.fromJson(
             imageSaverCubit.toJson(imageSaverCubit.state),
           ),
+          imageSaverCubit.state,
+        );
+      });
+    });
+
+    group('copyWith', () {
+      test('works correctly without params', () {
+        final imageSaverCubit = ImageSaverCubit(imageSaver);
+        expect(
+          imageSaverCubit.state.copyWith(),
           imageSaverCubit.state,
         );
       });
