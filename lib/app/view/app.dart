@@ -4,19 +4,26 @@ import 'package:coffee_repository/coffee_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_saver_wrapper/image_saver_wrapper.dart';
 
 class App extends StatelessWidget {
   const App({
     super.key,
     required CoffeeRepository coffeeRepository,
-  }) : _coffeeRepository = coffeeRepository;
+    required ImageSaverWrapper imageSaver,
+  })  : _coffeeRepository = coffeeRepository,
+        _imageSaver = imageSaver;
 
   final CoffeeRepository _coffeeRepository;
+  final ImageSaverWrapper _imageSaver;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: _coffeeRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(value: _coffeeRepository),
+        RepositoryProvider.value(value: _imageSaver),
+      ],
       child: MaterialApp(
         theme: ThemeData(
           backgroundColor: const Color(0xffffead5),

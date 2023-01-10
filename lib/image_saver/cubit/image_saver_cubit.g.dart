@@ -32,4 +32,5 @@ const _$ImageSaverStatusEnumMap = {
   ImageSaverStatus.loading: 'loading',
   ImageSaverStatus.success: 'success',
   ImageSaverStatus.failure: 'failure',
+  ImageSaverStatus.missingPermissions: 'missingPermissions',
 };

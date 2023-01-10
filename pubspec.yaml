@@ -18,6 +18,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^1.1.6
+  fluttertoast: ^8.1.2
   gallery_saver: ^2.3.2
   gap: ^2.0.1
   google_fonts: ^3.0.1

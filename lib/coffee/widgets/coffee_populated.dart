@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coffee_app/coffee/coffee.dart';
+import 'package:coffee_app/image_saver/cubit/image_saver_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class CoffeePopulated extends StatelessWidget {
@@ -40,7 +42,11 @@ class CoffeePopulated extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ElevatedButton(
-                  onPressed: onRefresh,
+                  onPressed: () async {
+                    await context
+                        .read<ImageSaverCubit>()
+                        .saveImageFromUrl(coffee.imageUrl);
+                  },
                   child: const Icon(Icons.download),
                 ),
                 const Gap(32),
