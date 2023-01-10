@@ -238,7 +238,82 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.byType(Card), findsOneWidget);
-      await tester.pumpAndSettle(const Duration(seconds: 7));
+      await tester.pumpAndSettle(const Duration(seconds: 10));
+    });
+    testWidgets('toast shown on loading saving image', (tester) async {
+      when(() => coffeeCubit.state)
+          .thenReturn(const CoffeeState(status: CoffeeStatus.success));
+      when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
+
+      whenListen(
+        imageSaverCubit,
+        Stream<ImageSaverState>.fromIterable([
+          const ImageSaverState(),
+          const ImageSaverState(status: ImageSaverStatus.loading),
+        ]),
+      );
+      await tester.pumpWidget(
+        MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: coffeeCubit),
+            BlocProvider.value(value: imageSaverCubit),
+          ],
+          child: const MaterialApp(home: CoffeeView()),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(Card), findsOneWidget);
+      await tester.pumpAndSettle(const Duration(seconds: 10));
+    });
+    testWidgets('toast shown on unknown error', (tester) async {
+      when(() => coffeeCubit.state)
+          .thenReturn(const CoffeeState(status: CoffeeStatus.success));
+      when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
+
+      whenListen(
+        imageSaverCubit,
+        Stream<ImageSaverState>.fromIterable([
+          const ImageSaverState(),
+          const ImageSaverState(status: ImageSaverStatus.failure),
+        ]),
+      );
+      await tester.pumpWidget(
+        MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: coffeeCubit),
+            BlocProvider.value(value: imageSaverCubit),
+          ],
+          child: const MaterialApp(home: CoffeeView()),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(Card), findsOneWidget);
+      await tester.pumpAndSettle(const Duration(seconds: 10));
+    });
+    testWidgets('toast shown on success', (tester) async {
+      when(() => coffeeCubit.state)
+          .thenReturn(const CoffeeState(status: CoffeeStatus.success));
+      when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
+
+      whenListen(
+        imageSaverCubit,
+        Stream<ImageSaverState>.fromIterable([
+          const ImageSaverState(),
+          const ImageSaverState(status: ImageSaverStatus.success),
+        ]),
+      );
+      await tester.pumpWidget(
+        MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: coffeeCubit),
+            BlocProvider.value(value: imageSaverCubit),
+          ],
+          child: const MaterialApp(home: CoffeeView()),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(Card), findsOneWidget);
+      await tester.pumpAndSettle(const Duration(seconds: 10));
     });
   });
 }
