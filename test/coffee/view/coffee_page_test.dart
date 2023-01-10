@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:coffee_app/coffee/coffee.dart';
 import 'package:coffee_app/image_saver/image_saver.dart';
@@ -8,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:image_saver_wrapper/image_saver_wrapper.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../helpers/helpers.dart';
 import '../../helpers/hydrated_bloc.dart';
 import '../../image_saver/cubit/image_saver_cubit_test.dart';
 
@@ -32,13 +35,13 @@ void main() {
     });
 
     testWidgets('renders CoffeeView', (tester) async {
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiRepositoryProvider(
           providers: [
             RepositoryProvider.value(value: coffeeRepository),
             RepositoryProvider.value(value: imageSaver),
           ],
-          child: const MaterialApp(home: CoffeePage()),
+          child: CoffeePage(),
         ),
       );
       expect(find.byType(CoffeeView), findsOneWidget);
@@ -57,13 +60,13 @@ void main() {
     testWidgets('renders CoffeeEmpty for CoffeeStatus.initial', (tester) async {
       when(() => coffeeCubit.state).thenReturn(const CoffeeState());
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       expect(find.byType(CoffeeEmpty), findsOneWidget);
@@ -74,13 +77,13 @@ void main() {
       when(() => coffeeCubit.state)
           .thenReturn(const CoffeeState(status: CoffeeStatus.loading));
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       expect(find.byType(CoffeeLoading), findsOneWidget);
@@ -90,13 +93,13 @@ void main() {
       when(() => coffeeCubit.state)
           .thenReturn(const CoffeeState(status: CoffeeStatus.failure));
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       expect(find.byType(CoffeeError), findsOneWidget);
@@ -107,13 +110,13 @@ void main() {
       when(() => coffeeCubit.state)
           .thenReturn(const CoffeeState(status: CoffeeStatus.success));
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       expect(find.byType(CoffeePopulated), findsOneWidget);
@@ -123,13 +126,13 @@ void main() {
       when(() => coffeeCubit.state).thenReturn(const CoffeeState());
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
       when(() => coffeeCubit.fetchCoffee()).thenAnswer((_) async {});
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.tap(find.byType(ElevatedButton));
@@ -142,13 +145,13 @@ void main() {
           .thenReturn(const CoffeeState(status: CoffeeStatus.success));
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
       when(() => coffeeCubit.fetchCoffee()).thenAnswer((_) async {});
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.tap(find.byIcon(Icons.autorenew));
@@ -163,13 +166,13 @@ void main() {
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
       when(() => imageSaverCubit.saveImageFromUrl(any()))
           .thenAnswer((_) async {});
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.tap(find.byIcon(Icons.download));
@@ -183,13 +186,13 @@ void main() {
           .thenReturn(const CoffeeState(status: CoffeeStatus.failure));
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
       when(() => coffeeCubit.fetchCoffee()).thenAnswer((_) async {});
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.tap(find.byType(ElevatedButton));
@@ -201,13 +204,13 @@ void main() {
       when(() => coffeeCubit.state)
           .thenReturn(const CoffeeState(status: CoffeeStatus.success));
       when(() => imageSaverCubit.state).thenReturn(const ImageSaverState());
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.tap(find.byType(BackButton));
@@ -227,13 +230,13 @@ void main() {
           const ImageSaverState(status: ImageSaverStatus.missingPermissions),
         ]),
       );
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.pumpAndSettle();
@@ -252,13 +255,13 @@ void main() {
           const ImageSaverState(status: ImageSaverStatus.loading),
         ]),
       );
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.pumpAndSettle();
@@ -277,13 +280,13 @@ void main() {
           const ImageSaverState(status: ImageSaverStatus.failure),
         ]),
       );
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.pumpAndSettle();
@@ -302,13 +305,13 @@ void main() {
           const ImageSaverState(status: ImageSaverStatus.success),
         ]),
       );
-      await tester.pumpWidget(
+      await tester.pumpApp(
         MultiBlocProvider(
           providers: [
             BlocProvider.value(value: coffeeCubit),
             BlocProvider.value(value: imageSaverCubit),
           ],
-          child: const MaterialApp(home: CoffeeView()),
+          child: CoffeeView(),
         ),
       );
       await tester.pumpAndSettle();
