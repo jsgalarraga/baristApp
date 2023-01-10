@@ -32,6 +32,18 @@ class _CoffeeViewState extends State<CoffeeView> {
         backgroundColor: theme.backgroundColor,
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
+        leading: BlocBuilder<CoffeeCubit, CoffeeState>(
+          builder: (context, state) {
+            switch (state.status) {
+              case CoffeeStatus.initial:
+                return const SizedBox();
+              case CoffeeStatus.loading:
+              case CoffeeStatus.failure:
+              case CoffeeStatus.success:
+                return const _BackButton();
+            }
+          },
+        ),
       ),
       backgroundColor: theme.backgroundColor,
       body: Center(
@@ -63,6 +75,20 @@ class _CoffeeViewState extends State<CoffeeView> {
           },
         ),
       ),
+    );
+  }
+}
+
+class _BackButton extends StatelessWidget {
+  const _BackButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return BackButton(
+      color: Colors.black,
+      onPressed: () {
+        return context.read<CoffeeCubit>().reset();
+      },
     );
   }
 }
