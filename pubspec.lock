@@ -366,6 +366,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "9.0.0"
+  image_saver_wrapper:
+    dependency: "direct main"
+    description:
+      path: "packages/image_saver_wrapper"
+      relative: true
+    source: path
+    version: "0.0.1"
   intl:
     dependency: "direct main"
     description:

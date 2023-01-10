@@ -22,6 +22,8 @@ dependencies:
   gap: ^2.0.1
   google_fonts: ^3.0.1
   hydrated_bloc: ^9.0.0
+  image_saver_wrapper:
+    path: packages/image_saver_wrapper
   intl: ^0.17.0
   json_annotation: ^4.7.0
   path_provider: ^2.0.11
